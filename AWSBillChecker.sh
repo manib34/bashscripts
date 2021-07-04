@@ -19,7 +19,7 @@ TotalBill="$(aws ce get-cost-and-usage --time-period Start=${StartDate}-01,End=$
 #FunctionSection
 TotalServices() {
     aws ce get-cost-and-usage \
-    --time-period Start=2021-06-01,End=$TodaysDate \
+    --time-period Start=${StartDate}-01,End=$TodaysDate \
     --metrics "UnblendedCost" \
     --granularity MONTHLY \
     --group-by Type=DIMENSION,Key=SERVICE \
@@ -39,7 +39,7 @@ ProgressBar() {
     _done=$(printf "%${_done}s")
     _left=$(printf "%${_left}s")
     printf "\rProgress : [${_done// /#}${_left// /-}] ${_progress}%%"
-    
+
 }
 #WorkBeginsHere
 echo ' '
